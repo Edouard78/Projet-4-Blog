@@ -13,6 +13,24 @@ class Post
 	const INVALID_TITLE = 2;
 	const INVALID_CONTENT = 3;
 
+  public function __construct($donnees)
+	{
+		$this->hydrate($donnees);
+	}
+
+  public function hydrate(array $donnees)
+	{
+		foreach($donnees as $key => $value)
+		{
+			$method = 'set'.ucfirst($key);
+		}
+
+		if (method_exists($this, $method))
+		{
+			$this->$method($value);
+		}
+	}
+
 	//GETTERS
 
 	public function id()
