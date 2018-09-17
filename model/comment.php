@@ -2,7 +2,8 @@
 
 class Comment
 {
-	protected postId,
+	protected id
+	          postId,
 	          author,
 						comment,
 						creationDate;
@@ -12,9 +13,14 @@ class Comment
 
 	//GETTERS
 
-	public function postId()
+	public function id()
 	{
 		return $this->_id;
+	}
+
+	public function postId()
+	{
+		return $this->_postId;
 	}
 
 	public function author()
@@ -32,13 +38,21 @@ class Comment
 		return $this->_creationDate;
 	}
 
+
 	//SETTERS
 
-	public function setPostId($id)
+	public function setId($id)
 	{
 		$id = (int)$id;
 
 		$this->_id = $id;
+	}
+
+	public function setPostId($postId)
+	{
+		$postId = (int)$postId;
+
+		$this->_postId = $postId;
 	}
 	public function setAuthor($author)
 	{
@@ -67,4 +81,5 @@ class Comment
 	{
 		$this->_creationDate = $creationDate;
 	}
+
 }
