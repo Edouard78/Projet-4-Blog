@@ -1,6 +1,6 @@
 <?php
 
-require '../../../controller/frontend.php';
+require '/../../../controller/frontend.php';
 
 ?>
 
@@ -21,12 +21,12 @@ require '../../../controller/frontend.php';
 
 <?php
 
-if(isset($_POST['author'])){
+if(isset($_POST['author']))
+{
 	$donnees = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);
 
   addPost($donnees);
-
 }
 
-require '../../../view/admin/adminTemplate.php';
+require '/../adminTemplate.php';
 ?>

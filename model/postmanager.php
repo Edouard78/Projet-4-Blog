@@ -6,7 +6,7 @@ class PostManager
 
 	public function __construct($db)
 	{
-		$this_db = $db;
+		$this->_db = $db;
 	}
 
 	public function addPost(Post $post)
@@ -27,7 +27,8 @@ class PostManager
 
 	public function delete($id)
 	{
-    $this->_db->exec('DELETE FROM posts WHERE id = '.(int) $id);
+		$id = (int) $id;
+    $this->_db->exec('DELETE FROM posts WHERE id = $id');
 	}
 
 	public function getList(){

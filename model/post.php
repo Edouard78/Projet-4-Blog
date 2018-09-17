@@ -7,7 +7,7 @@ class Post
 						$_title,
 						$_content,
 						$_creationDate,
-						$_updatingDate,
+						$_updatingDate;
 
 	const INVALID_AUTHOR = 1;
 	const INVALID_TITLE = 2;
@@ -20,15 +20,15 @@ class Post
 
   public function hydrate(array $donnees)
 	{
-		foreach($donnees as $key => $value)
+		foreach ($donnees as $key => $value)
 		{
 			$method = 'set'.ucfirst($key);
-		}
 
-		if (method_exists($this, $method))
-		{
-			$this->$method($value);
-		}
+		  if (method_exists($this, $method))
+		  {
+			  $this->$method($value);
+		  }
+		}	
 	}
 
 	//GETTERS
@@ -50,7 +50,7 @@ class Post
 
 	public function content()
 	{
-		return $this->content;
+		return $this->_content;
 	}
 
 	public function creationDate()
@@ -80,7 +80,7 @@ class Post
 		}
 		else
 		{
-			$this->_author = $author
+			$this->_author = $author;
 		}
 	}
 
@@ -88,7 +88,7 @@ class Post
 	{
 		if (!is_string($title) || empty($title))
 		{
-			return self::INVALID_AUTHOR;
+			return self::INVALID_TITLE;
 		}
 		else
 		{
