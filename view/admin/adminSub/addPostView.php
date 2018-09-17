@@ -1,6 +1,6 @@
 <?php
 
-require '../controller/frontend.php';
+require '../../../controller/frontend.php';
 
 ?>
 
@@ -28,5 +28,5 @@ if(isset($_POST['author'])){
 
 }
 
-require '../admin/adminTemplate.php';
+require '../../../view/admin/adminTemplate.php';
 ?>
