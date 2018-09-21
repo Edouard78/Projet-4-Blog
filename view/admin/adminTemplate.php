@@ -10,6 +10,7 @@
 
    </head>
    <body>
+   	<div class="container">
    	<header>
    		<h1>Blog De Jean</h1>
    		<h3>Ecrivain</h3>
@@ -25,5 +26,9 @@
             <?php echo $content ?>
         </div>
     </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
    </body>
 </html>

@@ -4,23 +4,23 @@ class Post
 {
 	protected $_id,
 	          $_author,
-						$_title,
-						$_content,
-						$_creationDate,
-						$_updatingDate;
+			  $_title,
+			  $_content,
+			  $_creationDate,
+			  $_updatingDate;
 
 	const INVALID_AUTHOR = 1;
 	const INVALID_TITLE = 2;
 	const INVALID_CONTENT = 3;
 
-  public function __construct($donnees)
+  public function __construct($data)
 	{
-		$this->hydrate($donnees);
+		$this->hydrate($data);
 	}
 
-  public function hydrate(array $donnees)
+  public function hydrate(array $data)
 	{
-		foreach ($donnees as $key => $value)
+		foreach ($data as $key => $value)
 		{
 			$method = 'set'.ucfirst($key);
 
