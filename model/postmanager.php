@@ -28,12 +28,14 @@ class PostManager
 	public function delete($id)
 	{
 		$id = (int) $id;
-    $this->_db->exec('DELETE FROM posts WHERE id = $id');
+    $req = $this->_db->prepare('DELETE FROM posts WHERE id = :id');
+    $req->bindValue(':id', $id );
+    $req->execute();
 	}
 
 	public function getList(){
 
-		$request = $this->_db ->query('SELECT id, title, content, creationDate FROM posts ORDER BY creationDate DESC LIMIT 0, 5');
+		$request = $this->_db ->query('SELECT id, title, author, content, creationDate FROM posts ORDER BY creationDate DESC LIMIT 0, 5');
 
 		return $request;
 	}
@@ -53,7 +55,7 @@ class PostManager
     $request->bindValue(':title', $post->title());
     $request->bindValue(':author', $post->author());
     $request->bindValue(':content', $post->content());
-    $request->bindValue(':id', $post->id(), PDO::PARAM_INT);
+    $request->bindValue(':id', $post->id());
 
     $request->execute();
 	}

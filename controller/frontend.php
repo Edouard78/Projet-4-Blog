@@ -39,10 +39,19 @@ function updatePost($data)
 {  
 
 	include('/../model/db.php');
-
+    
 	$post = new Post($data);
 	$postManager = new PostManager($db);
-	$postManager->updatePost($post);
+	$postManager->update($post);
 
 
+}
+
+function deletePost($id)
+{
+   include('/../model/db.php');
+    
+	
+	$postManager = new PostManager($db);
+	$postManager->delete($id);
 }

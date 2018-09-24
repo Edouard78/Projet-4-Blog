@@ -14,16 +14,23 @@ if($_GET['action'] == 'addPost' && isset($_POST['author']))
  if($_GET['action'] == 'updatePostDirection' && isset($_GET['id'])){
  
   updatePostPage($_GET['id']);
+}
 
-  if ($_GET['action'] == 'updatePost' && isset($_POST['author']))
+  if ($_GET['action'] == 'updatePost' && isset($_POST['author']) && isset($_GET['id']))
   {
   	$data = array('id' => $_GET['id'], 'author' => $_POST['author'], 'title' => $_POST['title'], 'content' => $_POST['content']);
   	updatePost($data);
+  	header('Location: index.php');
+
   }
-}
+ if($_GET['action'] == 'deletePost' && isset($_GET['id']))
+ {
+ 	deletePost($_GET['id']);
+ 	header('Location: index.php');
+ }
 
 }else
 {
-	
+
 listposts();
 }
