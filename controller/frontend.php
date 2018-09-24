@@ -6,7 +6,7 @@ require_once('/../model/postManager.php');
 
 function addPost($data)
 {
-include_once('/../model/db.php');
+include('/../model/db.php');
 
   $post = new Post($data);
 	$postManager = new PostManager($db);
@@ -15,14 +15,34 @@ include_once('/../model/db.php');
 
 function listPosts()
 {
-  include_once('/../model/db.php');
+  include('/../model/db.php');
 
   $postManager = new PostManager($db);
   $posts = $postManager->getList();
 
-  require_once('/../view/admin/postsView.php');
+  require('/../view/admin/postsView.php');
 
-  
+}
+
+function updatePostPage($id)
+{
+	include('/../model/db.php');
+	$postManager = new PostManager($db);
+	$post = $postManager->getUnique($id);
+
+    
+	require('/../view/admin/updatePostView.php');
+
+}
+
+function updatePost($data)
+{  
+
+	include('/../model/db.php');
+
+	$post = new Post($data);
+	$postManager = new PostManager($db);
+	$postManager->updatePost($post);
 
 
 }

@@ -40,11 +40,10 @@ class PostManager
 
 	public function getUnique($id)
 	{
-		$request = $db->prepare('SELECT id, title, content, DATE_FORMAT(creation_date, \'%d/%m/%Y à %Hh%imin%ss\') AS creation_date_fr FROM posts WHERE id = ?');
-			$req->execute(array($id));
-			$post = $req->fetch();
+		$request = $this->_db->prepare('SELECT id, title, author, content, creationDate, updatingDate FROM posts WHERE id = ?');
+			$request->execute(array($id));
 
-			return $post;
+			return $request;
 	}
 
 	public function update(Post $post)
