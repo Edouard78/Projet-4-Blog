@@ -13,6 +13,7 @@ class Post
 	const INVALID_TITLE = 2;
 	const INVALID_CONTENT = 3;
 
+	
   public function __construct($data)
 	{
 		$this->hydrate($data);

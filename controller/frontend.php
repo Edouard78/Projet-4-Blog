@@ -3,6 +3,7 @@
 require_once('/../model/post.php');
 require_once('/../model/postManager.php');
 
+//Admin
 
 function addPost($data)
 {
@@ -54,4 +55,30 @@ function deletePost($id)
 	
 	$postManager = new PostManager($db);
 	$postManager->delete($id);
+}
+
+
+// Front
+
+
+function home()
+{
+	include('/../model/db.php');
+
+    $postManager = new PostManager($db);
+    $posts = $postManager->getList();
+
+    require('/../view/homeView.php');
+
+
+}
+
+function postUnique($id)
+{
+	include('/../model/db.php');
+
+	$postManager = new PostManager($db);
+	$post = $postManager->getUnique($id);
+
+	require('/../view/postUniqueView.php');
 }
