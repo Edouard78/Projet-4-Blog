@@ -6,7 +6,7 @@ class CommentManager
 
 	public function __construct($db)
 	{
-		$this_db = $db;
+		$this->_db = $db;
 	}
 
 	public function addComment(Comment $comment)
@@ -16,17 +16,16 @@ class CommentManager
     $request->bindValue(':postId', $comment->postId());
     $request->bindValue(':author', $comment->author());
     $request->bindValue(':comment', $comment->comment());
-		$request->bindValue(':creationDate', $comment->creationDate());
 
     $request->execute();
 	}
 
 	public function getList($postId)
 	{
-		$comments = $this->_db->prepare('SELECT id, author, comment, DATE_FORMAT(creaitonDATE, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments WHERE postId = ? ORDER BY creationDATE DESC');
-    $comments->execute(array($postId));
+		$req = $this->_db->prepare('SELECT id, author, comment, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments WHERE postId = ? ORDER BY creationDateFr DESC');
+    $req->execute(array($postId));
 
-    return $comments;
+    return $req;
 	}
 
 	public function delete($id)

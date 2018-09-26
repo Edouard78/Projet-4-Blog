@@ -14,6 +14,13 @@ if(isset($_GET['action'])){
 	{
 		postUnique($_GET['id']);
 	}
+	if($_GET['action'] == 'addComment' && isset($_POST['author']) && $_GET['postId'] && isset($_POST['comment']))
+	{
+		$data = array('postId' => $_GET['postId'], 'author' => $_POST['author'], 'comment' => $_POST['comment']);
+		addComment($data);
+;
+		header('Location: index.php?action=postUnique&id='.$_GET['postId']);
+	}
 	if($_GET['action'] == 'addPost' && isset($_POST['author']))
 	{
 		$data = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);

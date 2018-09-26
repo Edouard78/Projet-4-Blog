@@ -2,6 +2,9 @@
 
 require_once('/../model/post.php');
 require_once('/../model/postManager.php');
+require_once('/../model/comment.php');
+require_once('/../model/commentManager.php');
+
 
 //Admin
 
@@ -80,5 +83,20 @@ function postUnique($id)
 	$postManager = new PostManager($db);
 	$post = $postManager->getUnique($id);
 
+	$commentManager = new CommentManager($db);
+	$comments = $commentManager->getList($id);
+
 	require('/../view/postUniqueView.php');
+}
+
+function addComment($data)
+{
+	include('/../model/db.php');
+
+	$comment = new Comment($data);
+
+	$commentManager = new CommentManager($db);
+
+	$commentManager->addComment($comment);
+
 }
