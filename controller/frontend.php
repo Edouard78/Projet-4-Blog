@@ -60,6 +60,22 @@ function deletePost($id)
 	$postManager->delete($id);
 }
 
+function listComments()
+{
+    include('/../model/db.php');
+	$commentManager = new CommentManager($db);
+	$comments = $commentManager->getListForAdmin();
+	var_dump($comments);
+   
+	$postManager = new PostManager($db);
+	$posts = $postManager->getListForAdmin();
+
+
+
+    var_dump($posts);
+	require('/../view/admin/commentsView.php');
+}
+
 
 // Front
 

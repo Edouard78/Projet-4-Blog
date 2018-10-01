@@ -28,6 +28,14 @@ class CommentManager
     return $req;
 	}
 
+	public function getListForAdmin()
+	{
+		$req = $this->_db->prepare('SELECT id, postId, author, comment, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments ORDER BY creationDateFr DESC');
+    $req->execute();
+
+    return $req;
+	}
+
 	public function delete($id)
 	{
 		$id = (int) $id;

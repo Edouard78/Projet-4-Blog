@@ -18,9 +18,12 @@ if(isset($_GET['action'])){
 	{
 		$data = array('postId' => $_GET['postId'], 'author' => $_POST['author'], 'comment' => $_POST['comment']);
 		addComment($data);
-;
+
 		header('Location: index.php?action=postUnique&id='.$_GET['postId']);
 	}
+
+// ADMINISTRATION
+
 	if($_GET['action'] == 'addPost' && isset($_POST['author']))
 	{
 		$data = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);
@@ -46,8 +49,13 @@ if(isset($_GET['action'])){
 		header('Location: index.php');
 	}
 
+	if($_GET['action'] == 'commentsAdmin')
+	{
+		listComments();
+	}
+
 }
 else
 {
-	home();
+	listPosts();
 }

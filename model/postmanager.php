@@ -40,6 +40,13 @@ class PostManager
 		return $request;
 	}
 
+		public function getListForAdmin(){
+ 
+		$req = $this->_db ->prepare('SELECT id, title FROM posts');
+		$req->execute();
+		return $req;
+	}
+
 	public function getUnique($id)
 	{
 		$request = $this->_db->prepare('SELECT id, title, author, content, creationDate, updatingDate FROM posts WHERE id = ?');

@@ -18,8 +18,8 @@
    	<div class = "row">
    	    <div class="navbar navbar-default">
             <ul class="nav navbar-nav">
-                <li class="active"> <a href="#">Articles</a> </li>
-                <li> <a href="#">Commentaires</a> </li>
+                <li class="active"> <a href="index.php?action=postsAdmin">Articles</a> </li>
+                <li> <a href="index.php?action=commentsAdmin">Commentaires</a> </li>
             </ul>
          </div>
         <div class="contentPage">
