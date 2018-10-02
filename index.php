@@ -1,12 +1,26 @@
 <?php
-
+session_start();
 require('controller/frontend.php');
 
 
 if(isset($_GET['action'])){
-	if($_GET['action'] == "connection"){
+
+	if ($_GET['action'] == 'connexion' && isset($_POST['login']))
+	{
+		$login = $_POST['login'];
+		$password = $_POST['password'];
+
+		authentication($login, $password);
+		header('Location: index.php');
+
+	}
+
+
+	if($_GET['action'] == 'adminPage'){
 		listPosts();
 	}
+
+
 	if($_GET['action'] == "home"){
 		home();
 	}
@@ -54,8 +68,10 @@ if(isset($_GET['action'])){
 		listComments();
 	}
 
+	
 }
+
 else
 {
-	listPosts();
+	home();
 }

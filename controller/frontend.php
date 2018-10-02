@@ -4,6 +4,9 @@ require_once('/../model/post.php');
 require_once('/../model/postManager.php');
 require_once('/../model/comment.php');
 require_once('/../model/commentManager.php');
+require_once('/../model/user.php');
+require_once('/../model/userManager.php');
+
 
 
 //Admin
@@ -115,4 +118,39 @@ function addComment($data)
 
 	$commentManager->addComment($comment);
 
+}
+
+function authentication($login, $password)
+{
+	include('/../model/db.php');
+
+	$userManager = new userManager($db);
+	$user = $userManager->authenticationGet($login);
+
+	$result = $user->fetch();
+	$isPasswordCorrect = password_verify($password, $result['password']);
+
+	if($login != $result['login'])
+	{
+		echo 'Mauvais Identifiant';
+	}
+	else if (!$isPasswordCorrect)
+	{
+        echo 'Mauvais mot de passe';
+	}
+	else
+	{
+		session_start();
+		$_SESSION['login'] = $result['login'];
+		$_SESSION['access'] =  $result['access'];
+		echo 'Vous êtes connecté';
+		
+	}
+
+
+}
+
+function nav()
+{
+	require('/../view/nav.php');
 }
