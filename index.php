@@ -15,6 +15,23 @@ if(isset($_GET['action'])){
 
 	}
 
+	if($_GET['action'] == 'subscribePage')
+	{
+		subscribePage();
+	}
+	if($_GET['action'] == 'subscribe' && isset($_POST['login']))
+	{   
+
+		if (!$_POST['password'] == $_POST['password2'])
+		{
+			$alertMsg = 'Les mots de passe ne sont pas identiques';
+		}
+		else
+		{
+		$data = array('login' => $_POST['login'], 'password' => $_POST['password'], 'email' => $_POST['email'] );
+        subscribe($data);
+        }
+	}
 
 	if($_GET['action'] == 'adminPage'){
 		listPosts();

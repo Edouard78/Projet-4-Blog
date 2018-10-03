@@ -144,7 +144,53 @@ function authentication($login, $password)
 
 }
 
-function nav()
+function subscribePage()
 {
-	require('/../view/nav.php');
+	require('/../view/subscribeView.php');
+}
+
+function subscribe($data)
+{
+	include('/../model/db.php');
+    $userManager = new userManager($db);
+
+    $login = $data['login'];
+	$countLogin = $userManager->countLogin($login);
+	$dataCountLogin = $countLogin->fetch();
+	var_dump($dataCountLogin['nb']);
+
+	$email = $data['email'];
+	$countEmail = $userManager->countEmail($email);
+	$dataCountEmail = $countEmail->fetch();
+    var_dump($dataCountEmail['nb']);
+	
+
+	if ($dataCountLogin['nb'] != 0)
+	{
+		$alertMsg = 'L\'utilisateur éxiste déjà';
+		var_dump($alertMsg);
+	}
+	else if ($dataCountEmail['nb'] != 0)
+	{
+		$alertMsg = 'L\'émail est déja utilisée';
+		var_dump($alertMsg);
+	}
+	else
+	{
+	$newUser = new User($data);
+	$newUser->setAccess('user');
+
+	var_dump($newUser);
+
+	$userManager = new userManager($db);
+	$userManager->createUser($newUser);
+
+	var_dump($userManager);
+
+    }
+
+
+
+
+
 }
