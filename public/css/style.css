@@ -1,0 +1,15 @@
+.subtitleBlock
+{
+	display : flex;
+}
+
+.logo img
+{
+   width: 35px;
+}
+
+.logo
+{
+	margin-left: 5px;
+	margin-top:  5.88px;
+}

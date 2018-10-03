@@ -70,12 +70,6 @@ function listComments()
 	$comments = $commentManager->getListForAdmin();
 	var_dump($comments);
    
-	$postManager = new PostManager($db);
-	$posts = $postManager->getListForAdmin();
-
-
-
-    var_dump($posts);
 	require('/../view/admin/commentsView.php');
 }
 
