@@ -42,5 +42,12 @@ class CommentManager
 	  $this->_db->exec('DELETE FROM comments WHERE id = $id');
 	}
 
+	public function reportComment($id)
+	{
+			$req = $this->_db->prepare('UPDATE comments SET reportedTimes = reportedTimes + 1 WHERE id = :id ');
+			$req->bindValue(':id', $id);
+			$req->execute();
+	}
+
 	
 }

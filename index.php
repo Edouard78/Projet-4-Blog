@@ -4,6 +4,10 @@ require('controller/frontend.php');
 
 
 if(isset($_GET['action'])){
+	if($_GET['action'] == 'reportComment' && isset($_GET['id']))
+	{
+        reportComment($_GET['id']);
+	}
 
 	if ($_GET['action'] == 'connexion' && isset($_POST['login']))
 	{

@@ -187,10 +187,20 @@ function subscribe($data)
 
 	var_dump($userManager);
 
-    }
-
-
-
-
-
+	}
 }
+	
+	function reportComment($id)
+	{
+		include('/../model/db.php');
+
+		$commentManager = new CommentManager($db);
+		$commentManager->reportComment($id);
+
+		echo 'Le commentaire à bien été signalé';
+	}
+
+
+
+
+

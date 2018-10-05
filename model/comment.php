@@ -6,7 +6,8 @@ class Comment
 	$_postId,
 	$_author,
 	$_comment,
-	$_creationDate;
+	$_creationDate,
+	$_reportedTimes;
 
 	CONST INVALID_AUTHOR = 1;
 	CONST INVALID_COMMENT = 2;
@@ -56,6 +57,11 @@ class Comment
 		return $this->_creationDate;
 	}
 
+	public function reportedTimes()
+	{
+	  	return $this->_reportedTimes;
+	}
+
 
 	//SETTERS
 
@@ -99,6 +105,13 @@ class Comment
 		public function setCreationDate($creationDate)
 		{
 			$this->_creationDate = $creationDate;
+		}
+
+		public function setReportedTimes($reportedTimes)
+		{
+			$reportedTimes = (int)$reportedTimes;
+
+			$this->_reportedTimes = $reportedTimes;
 		}
 
 	}
