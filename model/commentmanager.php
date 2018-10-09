@@ -11,12 +11,11 @@ class CommentManager
 
 	public function addComment(Comment $comment)
 	{
-		$request = $this->_db->prepare('INSERT INTO comments(postId, author, comment, creationDate) VALUES(:postId, :author, :comment, NOW())');
+	$request = $this->_db->prepare('INSERT INTO comments(postId, author, comment, creationDate, reportedTimes) VALUES(:postId, :author, :comment, NOW(), 0)');
 
     $request->bindValue(':postId', $comment->postId());
     $request->bindValue(':author', $comment->author());
     $request->bindValue(':comment', $comment->comment());
-
     $request->execute();
 	}
 
@@ -30,7 +29,7 @@ class CommentManager
 
 	public function getListForAdmin()
 	{
-		$req = $this->_db->prepare('SELECT id, postId, author, comment, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments ORDER BY creationDateFr DESC');
+		$req = $this->_db->prepare('SELECT id, postId, author, comment, reportedTimes, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments ORDER BY reportedTimes DESC');
     $req->execute();
 
     return $req;
@@ -39,7 +38,10 @@ class CommentManager
 	public function delete($id)
 	{
 		$id = (int) $id;
-	  $this->_db->exec('DELETE FROM comments WHERE id = $id');
+	  $req = $this->_db->prepare('DELETE FROM comments WHERE id = :id');
+	  $req->bindValue(':id', $id);
+	  $req->execute();
+	  
 	}
 
 	public function reportComment($id)

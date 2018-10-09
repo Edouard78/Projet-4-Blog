@@ -4,9 +4,10 @@ require('controller/frontend.php');
 
 
 if(isset($_GET['action'])){
-	if($_GET['action'] == 'reportComment' && isset($_GET['id']))
-	{
-        reportComment($_GET['id']);
+	if($_GET['action'] == 'reportComment' && isset($_GET['commentId']))
+	{   
+		verifyReport($_GET['commentId'], $_SESSION['id']);
+        
 	}
 
 	if ($_GET['action'] == 'connexion' && isset($_POST['login']))
@@ -17,6 +18,11 @@ if(isset($_GET['action'])){
 		authentication($login, $password);
 		header('Location: index.php');
 
+	}
+
+	if($_GET['action'] == 'disconnect'){
+		session_destroy();
+		header('Location: index.php');
 	}
 
 	if($_GET['action'] == 'subscribePage')
@@ -52,7 +58,9 @@ if(isset($_GET['action'])){
 	if($_GET['action'] == 'addComment' && isset($_POST['author']) && $_GET['postId'] && isset($_POST['comment']))
 	{
 		$data = array('postId' => $_GET['postId'], 'author' => $_POST['author'], 'comment' => $_POST['comment']);
+		var_dump($data);
 		addComment($data);
+
 
 		header('Location: index.php?action=postUnique&id='.$_GET['postId']);
 	}
@@ -87,6 +95,12 @@ if(isset($_GET['action'])){
 	if($_GET['action'] == 'commentsAdmin')
 	{
 		listComments();
+	}
+
+	if($_GET['action'] == 'deleteComment' && isset($_GET['id']))
+	{
+		deleteComment($_GET['id']);
+		header('Location: index.php?action=commentsAdmin');
 	}
 
 	

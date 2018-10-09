@@ -7,6 +7,9 @@ require_once('/../model/commentManager.php');
 require_once('/../model/user.php');
 require_once('/../model/userManager.php');
 
+require_once('/../model/userComment.php');
+require_once('/../model/userCommentManager.php');
+
 
 
 //Admin
@@ -68,9 +71,16 @@ function listComments()
     include('/../model/db.php');
 	$commentManager = new CommentManager($db);
 	$comments = $commentManager->getListForAdmin();
-	var_dump($comments);
+
    
 	require('/../view/admin/commentsView.php');
+}
+
+function deleteComment($id)
+{
+	include('/../model/db.php');
+	$commentManager = new CommentManager($db);
+	$comments = $commentManager->delete($id);
 }
 
 
@@ -108,9 +118,14 @@ function addComment($data)
 
 	$comment = new Comment($data);
 
+
 	$commentManager = new CommentManager($db);
 
-	$commentManager->addComment($comment);
+$commentManager->addComment($comment);
+
+
+	
+	
 
 }
 
@@ -135,6 +150,7 @@ function authentication($login, $password)
 	else
 	{
 		session_start();
+		$_SESSION['id'] = $result['id'];
 		$_SESSION['login'] = $result['login'];
 		$_SESSION['access'] =  $result['access'];
 		echo 'Vous êtes connecté';
@@ -157,48 +173,77 @@ function subscribe($data)
     $login = $data['login'];
 	$countLogin = $userManager->countLogin($login);
 	$dataCountLogin = $countLogin->fetch();
-	var_dump($dataCountLogin['nb']);
+
 
 	$email = $data['email'];
 	$countEmail = $userManager->countEmail($email);
 	$dataCountEmail = $countEmail->fetch();
-    var_dump($dataCountEmail['nb']);
+  
 	
 
 	if ($dataCountLogin['nb'] != 0)
 	{
 		$alertMsg = 'L\'utilisateur éxiste déjà';
-		var_dump($alertMsg);
+
 	}
 	else if ($dataCountEmail['nb'] != 0)
 	{
 		$alertMsg = 'L\'émail est déja utilisée';
-		var_dump($alertMsg);
+
 	}
 	else
 	{
 	$newUser = new User($data);
 	$newUser->setAccess('user');
 
-	var_dump($newUser);
 
 	$userManager = new userManager($db);
 	$userManager->createUser($newUser);
 
-	var_dump($userManager);
 
 	}
 }
 	
-	function reportComment($id)
+
+function verifyReport($commentId, $userId)
+{
+	include('/../model/db.php');
+
+	$userCommentManager = new UserCommentManager($db);
+	$result = $userCommentManager->countVerify($commentId, $userId);
+	$dataResult = $result->fetch();
+
+	if ($dataResult['nb'] != 0)
+	{
+		echo 'Vous avez déja signalé ce commentaire';
+	}
+
+	else {
+		reportComment($commentId, $userId);
+	}
+
+
+}
+
+function reportComment($commentId, $userId)
 	{
 		include('/../model/db.php');
 
 		$commentManager = new CommentManager($db);
-		$commentManager->reportComment($id);
+		$commentManager->reportComment($commentId);
+		
+		$dataId = array('commentId' => $commentId, 'userId' => $userId);
+
+		$userComment = new UserComment($dataId);
+		var_dump($userComment);
+		$commentUserManager = new userCommentManager($db);
+
+		$commentUserManager->create($userComment);
+
 
 		echo 'Le commentaire à bien été signalé';
 	}
+	
 
 
 
