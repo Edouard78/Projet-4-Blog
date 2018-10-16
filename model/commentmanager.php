@@ -44,11 +44,30 @@ class CommentManager
 	  
 	}
 
+	public function deleteFromPost($id)
+	{
+		$id = (int) $id;
+	  $req = $this->_db->prepare('DELETE FROM comments WHERE postId = :id');
+	  $req->bindValue(':id', $id);
+	  $req->execute();
+	  
+	}
+
 	public function reportComment($id)
 	{
 			$req = $this->_db->prepare('UPDATE comments SET reportedTimes = reportedTimes + 1 WHERE id = :id ');
 			$req->bindValue(':id', $id);
 			$req->execute();
+	}
+
+	public function getId($id)
+	{   
+		$id = (int) $id;
+		$req = $this->_db->prepare('SELECT id FROM comments WHERE postId = :id');
+		$req->bindValue(':id', $id);
+		$req->execute();
+	
+		return $req;
 	}
 
 	

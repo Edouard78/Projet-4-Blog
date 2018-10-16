@@ -19,8 +19,9 @@ function addPost($data)
 include('/../model/db.php');
 
   $post = new Post($data);
-	$postManager = new PostManager($db);
-	$postManager->addPost($post);
+  $postManager = new PostManager($db);
+  $postManager->addPost($post);
+
 }
 
 function listPosts()
@@ -64,6 +65,17 @@ function deletePost($id)
 	
 	$postManager = new PostManager($db);
 	$postManager->delete($id);
+
+	$commentManager = new CommentManager($db);
+	$result = $commentManager->getId($id);
+	$commentId = $result->fetch();
+	
+
+	$commentManager->deleteFromPost($id);
+
+	$userCommentManager = new UserCommentManager($db);
+	$userCommentManager->delete($commentId['id']);
+
 }
 
 function listComments()
@@ -183,12 +195,12 @@ function subscribe($data)
 
 	if ($dataCountLogin['nb'] != 0)
 	{
-		$alertMsg = 'L\'utilisateur éxiste déjà';
+		header('Location: index.php?action=subscribePage&error=2');
 
 	}
 	else if ($dataCountEmail['nb'] != 0)
 	{
-		$alertMsg = 'L\'émail est déja utilisée';
+		header('Location: index.php?action=subscribePage&error=3');
 
 	}
 	else
@@ -199,6 +211,8 @@ function subscribe($data)
 
 	$userManager = new userManager($db);
 	$userManager->createUser($newUser);
+
+	header('Location: index.php?action=subscribePage&success=1');
 
 
 	}

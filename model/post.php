@@ -6,6 +6,7 @@ class Post
 	          $_author,
 			  $_title,
 			  $_content,
+			  $_contentResume,
 			  $_creationDate,
 			  $_updatingDate;
 
@@ -29,7 +30,8 @@ class Post
 		  {
 			  $this->$method($value);
 		  }
-		}	
+		}
+			
 	}
 
 	//GETTERS
@@ -52,6 +54,12 @@ class Post
 	public function content()
 	{
 		return $this->_content;
+	}
+
+	
+	public function contentResume()
+	{
+		return $this->_contentResume;
 	}
 
 	public function creationDate()
@@ -106,6 +114,7 @@ class Post
 		else
 		{
 			$this->_content = $content;
+			$this->_contentResume = substr($content, 0, 30);
 		}
 	}
 

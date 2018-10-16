@@ -32,9 +32,9 @@ if(isset($_GET['action'])){
 	if($_GET['action'] == 'subscribe' && isset($_POST['login']))
 	{   
 
-		if (!$_POST['password'] == $_POST['password2'])
+		if ($_POST['password'] != $_POST['password2'])
 		{
-			$alertMsg = 'Les mots de passe ne sont pas identiques';
+			header('Location: index.php?action=subscribePage&error=1');
 		}
 		else
 		{
@@ -72,7 +72,7 @@ if(isset($_GET['action'])){
 		$data = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);
 
 		addPost($data);
-		header('Location: index.php?action=connection');
+		
 	}
 	if($_GET['action'] == 'updatePostDirection' && isset($_GET['id'])){
 
@@ -89,7 +89,8 @@ if(isset($_GET['action'])){
 	if($_GET['action'] == 'deletePost' && isset($_GET['id']))
 	{
 		deletePost($_GET['id']);
-		header('Location: index.php');
+		listPosts();
+
 	}
 
 	if($_GET['action'] == 'commentsAdmin')
@@ -101,6 +102,11 @@ if(isset($_GET['action'])){
 	{
 		deleteComment($_GET['id']);
 		header('Location: index.php?action=commentsAdmin');
+	}
+
+	if($_GET['action'] == 'postsAdmin')
+	{
+		listPosts();
 	}
 
 	

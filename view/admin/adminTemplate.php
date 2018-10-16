@@ -23,15 +23,25 @@
       <?php require_once('/../nav.php'); ?>
     </div>
    	<div class = "row">
+       <div class="container-fluid  col-md-3">
    	    <div class="navbar navbar-default">
-            <ul class="nav navbar-nav">
+           <div class="container-fluid">
+           <div class="navbar-header">
+    <p class="navbar-brand">Panneau d'administration</p>
+  </div>
+  </div>
+  <div class="container-fluid">
+            <ul class="nav nav-stacked">
                 <li class="active"> <a href="index.php?action=postsAdmin">Articles</a> </li>
                 <li> <a href="index.php?action=commentsAdmin">Commentaires</a> </li>
             </ul>
+            </div>
          </div>
-        <div class="contentPage">
+         </div>
+        <div class="contentPage col-md-9">
             <?php echo $content ?>
         </div>
+        
     </div>
 </div>
 

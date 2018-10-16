@@ -11,13 +11,13 @@ class PostManager
 
 	public function addPost(Post $post)
 	{
-		$request = $this->_db->prepare('INSERT INTO posts(author, title, content, creationDate, updatingDate) VALUES(:author, :title, :content, NOW(), NOW() )');
+		$req = $this->_db->prepare('INSERT INTO posts(author, title, content, contentResume, creationDate, updatingDate) VALUES(:author, :title, :content, :contentResume, NOW(), NOW() )');
 
-    $request->bindValue(':title', $post->title());
-    $request->bindValue(':author', $post->author());
-    $request->bindValue(':content', $post->content());
-
-    $request->execute();
+    $req->bindValue(':title', $post->title());
+    $req->bindValue(':author', $post->author());
+	$req->bindValue(':content', $post->content());
+	$req->bindValue(':contentResume', $post->contentResume());
+    $req->execute();
 	}
 
 	public function count()
@@ -35,7 +35,7 @@ class PostManager
 
 	public function getList(){
 
-		$request = $this->_db ->query('SELECT id, title, author, content, creationDate FROM posts ORDER BY creationDate DESC LIMIT 0, 5');
+		$request = $this->_db ->query('SELECT id, title, author, content, contentResume, creationDate FROM posts ORDER BY creationDate DESC LIMIT 0, 5');
 
 		return $request;
 	}
