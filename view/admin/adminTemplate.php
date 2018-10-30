@@ -8,6 +8,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" >
         <link rel="stylesheet" type="text/css" href="public/css/style.css" >
+        <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+        <script>tinymce.init({ selector:'textarea.tinymce'});</script>
    </head>
    <body>
    	<div class="container">
@@ -34,6 +36,7 @@
             <ul class="nav nav-stacked">
                 <li class="active"> <a href="index.php?action=postsAdmin">Articles</a> </li>
                 <li> <a href="index.php?action=commentsAdmin">Commentaires</a> </li>
+                <li> <a href="index.php?action=usersAdmin">Utilisateurs</a> </li>
             </ul>
             </div>
          </div>

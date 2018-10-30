@@ -56,7 +56,6 @@ class Post
 		return $this->_content;
 	}
 
-	
 	public function contentResume()
 	{
 		return $this->_contentResume;
@@ -114,7 +113,7 @@ class Post
 		else
 		{
 			$this->_content = $content;
-			$this->_contentResume = substr($content, 0, 30);
+			$this->_contentResume = substr(strip_tags($content), 0, 30);
 		}
 	}
 

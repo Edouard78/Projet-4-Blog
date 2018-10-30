@@ -4,9 +4,9 @@ require('controller/frontend.php');
 
 
 if(isset($_GET['action'])){
-	if($_GET['action'] == 'reportComment' && isset($_GET['commentId']))
+	if($_GET['action'] == 'reportComment' && isset($_GET['commentId']) && isset($_GET['postId']))
 	{   
-		verifyReport($_GET['commentId'], $_SESSION['id']);
+		verifyReport($_GET['commentId'], $_SESSION['id'], $_GET['postId'] );
         
 	}
 
@@ -31,20 +31,18 @@ if(isset($_GET['action'])){
 	}
 	if($_GET['action'] == 'subscribe' && isset($_POST['login']))
 	{   
-
-		if ($_POST['password'] != $_POST['password2'])
-		{
-			header('Location: index.php?action=subscribePage&error=1');
-		}
-		else
-		{
-		$data = array('login' => $_POST['login'], 'password' => $_POST['password'], 'email' => $_POST['email'] );
+		$data = array('login' => $_POST['login'], 'password' => $_POST['password'], 'password2' => $_POST['password2'],  'email' => $_POST['email'] );
         subscribe($data);
-        }
+
 	}
 
 	if($_GET['action'] == 'adminPage'){
 		listPosts();
+	}
+
+	if ($_GET['action'] == 'userPage')
+	{
+		listUserInfos($_SESSION['id']);
 	}
 
 
@@ -67,11 +65,18 @@ if(isset($_GET['action'])){
 
 // ADMINISTRATION
 
+if($_GET['action'] == 'addPostPage')
+{
+	addPostPage();
+	
+}
+
 	if($_GET['action'] == 'addPost' && isset($_POST['author']))
 	{
 		$data = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);
 
 		addPost($data);
+		listPosts();
 		
 	}
 	if($_GET['action'] == 'updatePostDirection' && isset($_GET['id'])){
@@ -107,6 +112,25 @@ if(isset($_GET['action'])){
 	if($_GET['action'] == 'postsAdmin')
 	{
 		listPosts();
+	}
+
+	if ($_GET['action'] == 'usersAdmin')
+	{
+		listUsers();
+	}
+
+	if ($_GET['action'] == 'updateUser' AND isset($_POST['admin']) AND isset($_GET['id'])){
+
+		$data = array('id' => $_GET['id'], 'admin' => $_POST['admin'] );
+		updateUser($data);
+		listUsers();
+	}
+
+	if ($_GET['action'] == 'deleteUser' AND isset($_GET['id']))
+	{
+		deleteUser($_GET['id']);
+		listUsers();
+
 	}
 
 	

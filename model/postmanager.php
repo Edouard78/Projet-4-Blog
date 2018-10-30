@@ -35,7 +35,7 @@ class PostManager
 
 	public function getList(){
 
-		$request = $this->_db ->query('SELECT id, title, author, content, contentResume, creationDate FROM posts ORDER BY creationDate DESC LIMIT 0, 5');
+		$request = $this->_db ->query('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT 0, 5');
 
 		return $request;
 	}
@@ -49,7 +49,7 @@ class PostManager
 
 	public function getUnique($id)
 	{
-		$request = $this->_db->prepare('SELECT id, title, author, content, creationDate, updatingDate FROM posts WHERE id = ?');
+		$request = $this->_db->prepare('SELECT id, title, author, content,DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM posts WHERE id = ?');
 			$request->execute(array($id));
 
 			return $request;
@@ -66,4 +66,5 @@ class PostManager
 
     $request->execute();
 	}
+
 }
