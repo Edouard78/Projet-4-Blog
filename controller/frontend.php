@@ -176,25 +176,28 @@ function authentication($login, $password)
 	$user = $userManager->authenticationGet($login);
 	$result = $user->fetch();
 	$isPasswordCorrect = password_verify($password, $result['password']);
-	if ($login != $result['login'])
+
+	
+    if ($login != $result['login'] || !$isPasswordCorrect)
 	{
-		echo 'Mauvais Identifiant';
+		header('Location: index.php?action=authenticationPage&errors=1');
 	}
-	else
-	if (!$isPasswordCorrect)
-	{
-		echo 'Mauvais mot de passe';
-	}
+
 	else
 	{
 		session_start();
 		$_SESSION['id'] = $result['id'];
 		$_SESSION['login'] = $result['login'];
 		$_SESSION['admin'] = $result['admin'];
-		echo 'Vous êtes connecté';
+
+		header('Location: index.php?action=home');
 	}
 }
+function authenticationPage()
+{
+	require ('/../view/authenticationView.php');
 
+}
 function subscribePage()
 {
 	require ('/../view/subscribeView.php');

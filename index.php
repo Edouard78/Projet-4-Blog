@@ -16,8 +16,13 @@ if(isset($_GET['action'])){
 		$password = $_POST['password'];
 
 		authentication($login, $password);
-		header('Location: index.php');
+		
 
+	}
+
+	if($_GET['action'] == 'authenticationPage')
+	{
+		authenticationPage();
 	}
 
 	if($_GET['action'] == 'disconnect'){
