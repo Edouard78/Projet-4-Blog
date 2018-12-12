@@ -33,11 +33,20 @@ class PostManager
     $req->execute();
 	}
 
-	public function getList(){
+	public function getList($start , $end){
 
-		$request = $this->_db ->query('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT 0, 5');
-
+		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT :start ,:end');
+		$request->bindValue(':start', $start, PDO::PARAM_INT);
+		$request->bindValue(':end', $end, PDO::PARAM_INT);
+	    $request->execute();
 		return $request;
+	}
+
+	public function countPosts()
+	{
+		$req = $this->_db->prepare('SELECT COUNT(id) AS postsNb FROM posts');
+		$req->execute();
+		return $req;
 	}
 
 		public function getListForAdmin(){

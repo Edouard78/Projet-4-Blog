@@ -33,12 +33,12 @@ function addPost($data)
 	$postManager->addPost($post);
 }
 
-function listPosts()
+function listPosts($start, $end)
 {
 	include ('/../model/db.php');
 
 	$postManager = new PostManager($db);
-	$posts = $postManager->getList();
+	$posts = $postManager->getList($start, $end);
 	require ('/../view/admin/postsView.php');
 
 }
@@ -126,13 +126,25 @@ function deleteUser($id)
 }
 
 // Front
+function countPostsLists()
+{
+	include ('/../model/db.php');
+	$postManager = new PostManager($db);
+	$result = $postManager->countPosts();
 
-function home()
+	$postsNbStr = $result->fetch();
+	$postsNb = intval($postsNbStr[0]);
+
+	$postsListsNb = $postsNb / 5;
+
+    return $postsListsNb;
+}
+function home($postsListsNb, $start, $end)
 {
 	include ('/../model/db.php');
 
 	$postManager = new PostManager($db);
-	$posts = $postManager->getList();
+	$posts = $postManager->getList($start, $end);
 	require ('/../view/homeView.php');
 
 }

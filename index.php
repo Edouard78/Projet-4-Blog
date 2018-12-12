@@ -42,7 +42,7 @@ if(isset($_GET['action'])){
 	}
 
 	if($_GET['action'] == 'adminPage'){
-		listPosts();
+		listPosts(0,5);
 	}
 
 	if ($_GET['action'] == 'userPage')
@@ -51,9 +51,41 @@ if(isset($_GET['action'])){
 	}
 
 
-	if($_GET['action'] == "home"){
-		home();
+	if ($_GET['action'] == "home" && !isset($_GET['homePage']))
+	{
+	   $postsListsNb = countPostsLists();
+
+	   home($postsListsNb,0, 5);
 	}
+
+	elseif ($_GET['action'] == "home" && isset($_GET['homePage']) )
+	{
+		$postsListsNb = countPostsLists();
+		
+		$postsNb = $postsListsNb * 5;
+// Boutton précedent		
+		if($_GET['homePage'] == 0)
+		{
+			header('Location: index.php?action=home');
+		}
+// Boutton suivant
+		elseif ($_GET['homePage'] >= $postsNb + 5)
+		{
+		$end = intval($_GET['homePage']) - 5 ;
+		header('Location: index.php?action=home&homePage='.$end);
+		}
+
+		else
+		{
+		$start = intval($_GET['homePage']) - 5;
+		$end = intval($_GET['homePage']);
+
+		
+		$postsListsNb = countPostsLists();
+	   home($postsListsNb, $start, $end);
+		}
+	}
+
 	if($_GET['action'] == "postUnique" && $_GET['id'])
 	{
 		postUnique($_GET['id']);
@@ -81,7 +113,7 @@ if($_GET['action'] == 'addPostPage')
 		$data = array('author' => $_POST['author'] , 'title' => $_POST['title'] , 'content' => $_POST['content']);
 
 		addPost($data);
-		listPosts();
+		listPosts(0,5);
 		
 	}
 	if($_GET['action'] == 'updatePostDirection' && isset($_GET['id'])){
@@ -99,7 +131,7 @@ if($_GET['action'] == 'addPostPage')
 	if($_GET['action'] == 'deletePost' && isset($_GET['id']))
 	{
 		deletePost($_GET['id']);
-		listPosts();
+		listPosts(0,5);
 
 	}
 
@@ -116,7 +148,7 @@ if($_GET['action'] == 'addPostPage')
 
 	if($_GET['action'] == 'postsAdmin')
 	{
-		listPosts();
+		listPosts(0,5);
 	}
 
 	if ($_GET['action'] == 'usersAdmin')
@@ -143,5 +175,6 @@ if($_GET['action'] == 'addPostPage')
 
 else
 {
-	home();
+	$postsListsNb = countPostsLists();
+	home($postsListsNb, 0, 5);
 }
