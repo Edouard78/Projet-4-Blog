@@ -19,6 +19,7 @@
 			<?php require_once( '/../nav.php'); ?>
 		</div>
 	</nav>
+	<div class="wraper">	
 	<header>
 		<div id="headerBlock">
 			<h1>Blog De Jean</h1>
@@ -44,6 +45,8 @@
         </div>
         
  
+</div>
+</div>
 </div>
 	<footer id="footer">
 		<div class="jumbotron">

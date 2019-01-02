@@ -2,6 +2,7 @@
 body
 {
 	padding-top : 4em !important;
+
 }
 
 .logo img
@@ -54,3 +55,9 @@ header{
 
 }
 
+.wraper
+{
+	min-height: 60vh;
+	padding: 0;
+	margin : 0;
+}
