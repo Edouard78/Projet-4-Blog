@@ -29,8 +29,23 @@ function addPost($data)
 	include ('/../model/db.php');
 
 	$post = new Post($data);
+    
+	$errorsFromModel = $post->errors();
+	if (count($errorsFromModel) > 0)
+	{
+		if (in_array(Post::INVALID_AUTHOR, $errorsFromModel) OR in_array(Post::INVALID_TITLE, $errorsFromModel) OR in_array(Post::INVALID_CONTENT, $errorsFromModel) )
+		{
+			header('Location: index.php?action=addPostPage&errors=1');
+		}
+
+	}
+	else{
+
 	$postManager = new PostManager($db);
 	$postManager->addPost($post);
+
+	header('Location: index.php?action=postsAdmin');
+	}
 }
 
 function listPosts($start, $end)
@@ -53,13 +68,29 @@ function updatePostPage($id)
 
 }
 
-function updatePost($data)
+function updatePost($data, $id)
 {
 	include ('/../model/db.php');
 
 	$post = new Post($data);
+	
+	$errorsFromModel = $post->errors();
+
+	if (count($errorsFromModel) > 0)
+	{
+		if (in_array(Post::INVALID_AUTHOR, $errorsFromModel) OR in_array(Post::INVALID_TITLE, $errorsFromModel) OR in_array(Post::INVALID_CONTENT, $errorsFromModel) )
+		{
+			header('Location: index.php?action=updatePostDirection&id='.$id.'&errors=1');
+		
+		}
+
+	}
+	else{
 	$postManager = new PostManager($db);
 	$postManager->update($post);
+
+	header('Location: index.php?action=postsAdmin');
+	}
 }
 
 function deletePost($id)
@@ -176,8 +207,22 @@ function addComment($data)
 	include ('/../model/db.php');
 
 	$comment = new Comment($data);
+
+	$errorsFromModel = $comment->errors();
+	if (count($errorsFromModel) > 0)
+	{
+		if (in_array(Comment::INVALID_AUTHOR, $errorsFromModel) OR in_array(Comment::INVALID_COMMENT, $errorsFromModel) )
+		{
+			header('Location: index.php?action=postUnique&id='.$data['postId'].'&errors=1');
+		}
+
+	}
+	else{
 	$commentManager = new CommentManager($db);
 	$commentManager->addComment($comment);
+
+	header('Location: index.php?action=postUnique&id='.$data['postId']);
+	}
 }
 
 function authentication($login, $password)

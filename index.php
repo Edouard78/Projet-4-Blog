@@ -128,7 +128,6 @@ if (isset($_GET['action']))
 			'comment' => $_POST['comment']
 		);
 		addComment($data);
-		header('Location: index.php?action=postUnique&id=' . $_GET['postId']);
 		}
 }
 
@@ -183,19 +182,21 @@ if (isset($_GET['action']))
 	}
 }
 	
-	elseif ($_GET['action'] == 'updatePost' && isset($_POST['author']) )
+	elseif ($_GET['action'] == 'updatePost')
 	{
 	if (isset($_GET['id']) && $_GET['id'] > 0)
 	{
-	
+	     
 		$data = array(
 			'id' => $_GET['id'],
 			'author' => $_POST['author'],
 			'title' => $_POST['title'],
 			'content' => $_POST['content']
 		);
-		updatePost($data);
-		header('Location: index.php');
+
+		$id = $_GET['id'];
+
+		updatePost($data, $id);
 		}
 		else {
 		throw new Exception('Aucun identifiant de billet envoyé');

@@ -7,7 +7,8 @@ class Comment
 	$_author,
 	$_comment,
 	$_creationDate,
-	$_reportedTimes;
+	$_reportedTimes,
+	$_errors=[];
 
 	CONST INVALID_AUTHOR = 1;
 	CONST INVALID_COMMENT = 2;
@@ -62,6 +63,10 @@ class Comment
 	  	return $this->_reportedTimes;
 	}
 
+	public function errors()
+	{
+		return $this->_errors;
+	}
 
 	//SETTERS
 
@@ -82,7 +87,7 @@ class Comment
 	{
 		if (!is_string($author) || empty($author))
 		{
-			return self::INVALID_AUTHOR;
+			$this->_errors[]=self::INVALID_AUTHOR;
 		}
 		else
 		{
@@ -94,7 +99,7 @@ class Comment
 		{
 			if (!is_string($comment) || empty($comment))
 			{
-				return self::INVALID_COMMENT;
+				$this->_errors[]=self::INVALID_COMMENT;
 			}
 			else
 			{

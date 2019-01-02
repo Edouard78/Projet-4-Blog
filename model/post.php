@@ -8,7 +8,8 @@ class Post
 			  $_content,
 			  $_contentResume,
 			  $_creationDate,
-			  $_updatingDate;
+			  $_updatingDate,
+			  $_errors=[];
 
 	const INVALID_AUTHOR = 1;
 	const INVALID_TITLE = 2;
@@ -71,6 +72,12 @@ class Post
 		return $this->_updatingDate;
 	}
 
+	public function errors()
+	{
+		return $this->_errors;
+	}
+
+
   //SETTERS
 
 	public function setId($id)
@@ -84,7 +91,7 @@ class Post
 	{
 		if (!is_string($author) || empty($author))
 		{
-			return self::INVALID_AUTHOR;
+			$this->_errors[]=self::INVALID_AUTHOR;
 		}
 		else
 		{
@@ -96,7 +103,7 @@ class Post
 	{
 		if (!is_string($title) || empty($title))
 		{
-			return self::INVALID_TITLE;
+			$this->_errors[]=self::INVALID_TITLE;
 		}
 		else
 		{
@@ -108,7 +115,7 @@ class Post
 	{
 		if (!is_string($content) || empty($content))
 		{
-			return self::INVALID_CONTENT;
+			$this->_errors[]=self::INVALID_CONTENT;
 		}
 		else
 		{
