@@ -1,3 +1,6 @@
 <?php
 
-$db = new PDO('mysql:host=localhost;dbname=blog;charset=utf8', 'root', '');
+
+$db = new PDO("mysql:host=db767806095.hosting-data.io;dbname=db767806095", "dbo767806095", "02kwtx1e");
+
+?>

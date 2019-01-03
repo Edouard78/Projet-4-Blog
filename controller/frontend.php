@@ -1,32 +1,32 @@
 
 <?php
-require_once ('/../model/post.php');
+require_once ('model/post.php');
 
-require_once ('/../model/postManager.php');
+require_once ('model/postManager.php');
 
-require_once ('/../model/comment.php');
+require_once ('model/comment.php');
 
-require_once ('/../model/commentManager.php');
+require_once ('model/commentManager.php');
 
-require_once ('/../model/user.php');
+require_once ('model/user.php');
 
-require_once ('/../model/userManager.php');
+require_once ('model/userManager.php');
 
-require_once ('/../model/userComment.php');
+require_once ('model/userComment.php');
 
-require_once ('/../model/userCommentManager.php');
+require_once ('model/userCommentManager.php');
 
 // Admin
 
 function addPostPage()
 {
-	require ('/../view/admin/addPostView.php');
+	require ('view/admin/addPostView.php');
 
 }
 
 function addPost($data)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$post = new Post($data);
     
@@ -50,27 +50,27 @@ function addPost($data)
 
 function listPosts($start, $end)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$postManager = new PostManager($db);
 	$posts = $postManager->getList($start, $end);
-	require ('/../view/admin/postsView.php');
+	require ('view/admin/postsView.php');
 
 }
 
 function updatePostPage($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$postManager = new PostManager($db);
 	$post = $postManager->getUnique($id);
-	require ('/../view/admin/updatePostView.php');
+	require ('view/admin/updatePostView.php');
 
 }
 
 function updatePost($data, $id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$post = new Post($data);
 	
@@ -95,7 +95,7 @@ function updatePost($data, $id)
 
 function deletePost($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$postManager = new PostManager($db);
 	$postManager->delete($id);
@@ -109,17 +109,17 @@ function deletePost($id)
 
 function listComments()
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$commentManager = new CommentManager($db);
 	$comments = $commentManager->getListForAdmin();
-	require ('/../view/admin/commentsView.php');
+	require ('view/admin/commentsView.php');
 
 }
 
 function deleteComment($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$commentManager = new CommentManager($db);
 	$comments = $commentManager->delete($id);
@@ -128,29 +128,29 @@ function deleteComment($id)
 function listUsers()
 {
 	
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userManager = new UserManager($db);
 	$users = $userManager->getList();
-	require ('/../view/admin/usersView.php');
+	require ('view/admin/usersView.php');
 
 }
 
 function updateUser($data)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 	$user = new User($data);
 	$userManager = new UserManager($db);
 	$userManager->update($user);
 
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 
 }
 
 function deleteUser($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userManager = new UserManager($db);
 	$user = $userManager->delete($id);
@@ -159,7 +159,7 @@ function deleteUser($id)
 // Front
 function countPostsLists()
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 	$postManager = new PostManager($db);
 	$result = $postManager->countPosts();
 
@@ -172,39 +172,39 @@ function countPostsLists()
 }
 function home($postsListsNb, $start, $end)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$postManager = new PostManager($db);
 	$posts = $postManager->getList($start, $end);
-	require ('/../view/homeView.php');
+	require ('view/homeView.php');
 
 }
 
 function listUserInfos($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userManager = new UserManager($db);
 	$userInfos = $userManager->getInfos($id);
-	require ('/../view/user/infosView.php');
+	require ('view/user/infosView.php');
 
 }
 
 function postUnique($id)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$postManager = new PostManager($db);
 	$post = $postManager->getUnique($id);
 	$commentManager = new CommentManager($db);
 	$comments = $commentManager->getList($id);
-	require ('/../view/postUniqueView.php');
+	require ('view/postUniqueView.php');
 
 }
 
 function addComment($data)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$comment = new Comment($data);
 
@@ -227,7 +227,7 @@ function addComment($data)
 
 function authentication($login, $password)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userManager = new userManager($db);
 	$user = $userManager->authenticationGet($login);
@@ -242,28 +242,31 @@ function authentication($login, $password)
 
 	else
 	{
+
 		session_start();
 		$_SESSION['id'] = $result['id'];
 		$_SESSION['login'] = $result['login'];
 		$_SESSION['admin'] = $result['admin'];
 
-		header('Location: index.php?action=home');
+		
+        header('Location: index.php');
+	
 	}
 }
 function authenticationPage()
 {
-	require ('/../view/authenticationView.php');
+	require ('view/authenticationView.php');
 
 }
 function subscribePage()
 {
-	require ('/../view/subscribeView.php');
+	require ('view/subscribeView.php');
 
 }
 
 function subscribe($data)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userManager = new userManager($db);
 	$login = $data['login'];
@@ -325,7 +328,7 @@ function subscribe($data)
 
 function verifyReport($commentId, $userId, $postId)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$userCommentManager = new UserCommentManager($db);
 	$result = $userCommentManager->countVerify($commentId, $userId);
@@ -342,7 +345,7 @@ function verifyReport($commentId, $userId, $postId)
 
 function reportComment($commentId, $userId, $postId)
 {
-	include ('/../model/db.php');
+	include ('model/db.php');
 
 	$commentManager = new CommentManager($db);
 	$commentManager->reportComment($commentId);
