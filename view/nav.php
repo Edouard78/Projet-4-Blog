@@ -46,8 +46,8 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">x</button>
               <h4 class="modal-title">Connexion</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
               <form action="index.php?action=connexion" method="post">
@@ -64,4 +64,5 @@
               </form>
             </div>
         </div>
+</div>
 </div>

@@ -35,7 +35,7 @@ class PostManager
 
 	public function getList($start , $end){
 
-		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT :start ,:end');
+		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr ASC LIMIT :start ,:end');
 		$request->bindValue(':start', $start, PDO::PARAM_INT);
 		$request->bindValue(':end', $end, PDO::PARAM_INT);
 	    $request->execute();
@@ -58,7 +58,7 @@ class PostManager
 
 	public function getUnique($id)
 	{
-		$request = $this->_db->prepare('SELECT id, title, author, content,DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM posts WHERE id = ?');
+		$request = $this->_db->prepare('SELECT id, title, author, content,DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr FROM posts WHERE id = ?');
 			$request->execute(array($id));
 
 			return $request;

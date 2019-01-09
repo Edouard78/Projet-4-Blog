@@ -7,7 +7,7 @@ while ($data = $posts->fetch())
   <div class="card-header">
   <h5 class="panel-title"><a href="index.php?action=postUnique&amp;id=<?php
 	echo $data['id'] ?>"><?php
-	echo htmlspecialchars($data['title']) ?></a><p class="float-right"><em><?php
+	echo htmlspecialchars($data['title']) ?></a><em class="float-right"><?php
 	if ($data['creationDateFr'] != $data['updatingDateFr'])
 		{
 ?>
@@ -25,10 +25,10 @@ else{
     <?php
 		echo $data['creationDateFr'];
 }
-?></em></p></h5>
+?></em></h5>
   </div>
   <div class="card-body"><p class="card-text"><?php
-		echo nl2br(html_entity_decode($data['content'])); ?></p>
+		echo nl2br(html_entity_decode($data['content'])); ?>
   </div>
 </div>
 <br/>

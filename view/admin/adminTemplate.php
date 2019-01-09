@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
 		<div id="headerBlock">
 			<h1>Blog De Jean</h1>
 			<div class="logo">
-				<img src="plume.png" />
+				<img src="plume.png" alt='Logo du site' />
 			</div>
 		</div>
     </header>
@@ -52,10 +52,10 @@
 		<div class="jumbotron">
 			<div class="container-fluid">
 				<div class="footerBlock row">
-					<div class="socialMedia col"> <i class="fa fa-facebook"></i>
-						<i class="fa fa-twitter"></i>
-						<i class="fa fa-skype"></i>
-						<i class="fa fa-instagram"></i>
+					<div class="socialMedia col"> <em class="fa fa-facebook"></em>
+						<em class="fa fa-twitter"></em>
+						<em class="fa fa-skype"></em>
+						<em class="fa fa-instagram"></em>
 					</div>
 					<div class="contact col">
 						<h3>Contact :</h3>
@@ -63,6 +63,7 @@
 							<br/>0660812984</p>
 					</div>
 				</div>
+			</div>
 			</div>
 	</footer>
 
