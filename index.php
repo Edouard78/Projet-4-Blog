@@ -1,4 +1,5 @@
 <?php
+ob_start(); 
 session_start();
 require ('controller/frontend.php');
 
@@ -15,10 +16,10 @@ if (isset($_GET['action']))
 
 	if ($_GET['action'] == 'connexion' && isset($_POST['login']))
 		{
-	
 		$login = $_POST['login'];
 		$password = $_POST['password'];
 		authentication($login, $password);
+
 		}
 	elseif ($_GET['action'] == 'authenticationPage')
 		{

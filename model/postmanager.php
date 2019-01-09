@@ -35,7 +35,7 @@ class PostManager
 
 	public function getList($start , $end){
 
-		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT :start ,:end');
+		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT :start ,:end');
 		$request->bindValue(':start', $start, PDO::PARAM_INT);
 		$request->bindValue(':end', $end, PDO::PARAM_INT);
 	    $request->execute();

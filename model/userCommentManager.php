@@ -11,7 +11,7 @@ class UserCommentManager
     
     public function countVerify($commentId, $userId)
     {
-		$req = $this->_db->prepare('SELECT COUNT(id) AS nb FROM userComment WHERE userId = :userId and commentId = :commentId');
+		$req = $this->_db->prepare('SELECT COUNT(id) AS nb FROM usercomment WHERE userId = :userId and commentId = :commentId');
         $req->bindValue(':commentId', $commentId);
         $req->bindValue(':userId',$userId);
         $req->execute();
@@ -21,7 +21,7 @@ class UserCommentManager
 
     public function create(Usercomment $userComment)
     {
-        $request = $this->_db->prepare('INSERT INTO userComment(commentId, userId) VALUES(:commentId, :userId)');
+        $request = $this->_db->prepare('INSERT INTO usercomment(commentId, userId) VALUES(:commentId, :userId)');
 
         $request->bindValue(':commentId', $userComment->commentId());
         $request->bindValue(':userId', $userComment->userId());

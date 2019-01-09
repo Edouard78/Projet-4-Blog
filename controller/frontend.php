@@ -238,6 +238,7 @@ function authentication($login, $password)
     if ($login != $result['login'] || !$isPasswordCorrect)
 	{
 		header('Location: index.php?action=authenticationPage&errors=1');
+		exit();
 	}
 
 	else
@@ -248,7 +249,6 @@ function authentication($login, $password)
 		$_SESSION['login'] = $result['login'];
 		$_SESSION['admin'] = $result['admin'];
 
-		
         header('Location: index.php');
 	
 	}
@@ -333,6 +333,7 @@ function verifyReport($commentId, $userId, $postId)
 	$userCommentManager = new UserCommentManager($db);
 	$result = $userCommentManager->countVerify($commentId, $userId);
 	$dataResult = $result->fetch();
+	
 	if ($dataResult['nb'] != 0)
 	{
 		header('Location: index.php?action=postUnique&id=' . $postId . '&reportError=1&commentId=' . $commentId);
@@ -354,7 +355,7 @@ function reportComment($commentId, $userId, $postId)
 		'userId' => $userId
 	);
 	$userComment = new UserComment($dataId);
-	var_dump($userComment);
+	
 	$commentUserManager = new userCommentManager($db);
 	$commentUserManager->create($userComment);
 	header('Location: index.php?action=postUnique&id=' . $postId . '&reportSuccess=1&commentId=' . $commentId);
