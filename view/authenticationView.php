@@ -1,3 +1,4 @@
+
 <?php
 ob_start();
 ?>
@@ -5,16 +6,18 @@ ob_start();
 <?php
 
 if (isset($_GET['errors']))
-{
-    if($_GET['errors'] = 1){
-        ?>
+	{
+	if ($_GET['errors'] = 1)
+		{
+?>
         <div class="alert alert-danger">
     <strong>Le nom d'utilisateur ou le mot de passe est incorrect<strong>
 </div>
 <?php
-    }
-}
-    ?>
+		}
+	}
+
+?>
  <form action="index.php?action=connexion" method="post">
                 <div class="form-group">
                   <label for="login">Nom d'utilisateur</label>
@@ -30,5 +33,6 @@ if (isset($_GET['errors']))
 <?php
 $content = ob_get_clean();
 require ('view/template.php');
+
 ?>
 

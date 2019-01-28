@@ -8,7 +8,7 @@ try {
 if (isset($_GET['action']))
 	{
 
-	/*  USER LOGIN AND SBSCRIBE   */
+	/*  USER LOGIN AND SUBSCRIBE   */
 
 	/*---------------------------------------
 	USER LOGIN
@@ -135,10 +135,18 @@ if (isset($_GET['action']))
 
 	// REPORT COMMENT
 
-	elseif ($_GET['action'] == 'reportComment' && isset($_GET['commentId']) && isset($_GET['postId']))
+	elseif ($_GET['action'] == 'reportComment')
 		{
+			if(isset($_GET['commentId']) && isset($_GET['postId']) && $_GET['commentId'] > 0 && $_GET['postId'] > 0 )
+			{
 		verifyReport($_GET['commentId'], $_SESSION['id'], $_GET['postId']);
 		}
+		else
+		{
+			throw new Exception('Aucun identifiant de billet ou de commentaire envoyé');
+		}
+
+	}
 
 
 	/*  ADMIN SECTION  */

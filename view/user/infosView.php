@@ -1,27 +1,30 @@
-<?php ob_start(); ?>
+
+<?php
+ob_start(); ?>
 
 <h3> Mes Infos </h3>
 
 	<?php
-	while ($data = $userInfos->fetch())
+
+while ($data = $userInfos->fetch())
 	{
-		?>
-				<p><strong>Login : </strong><?= $data['login'] ?></p>
-				<p><strong>Email : </strong><?= $data['email'] ?></p>
+?>
+				<p><strong>Login : </strong><?php echo $data['login'] ?></p>
+				<p><strong>Email : </strong><?php echo $data['email'] ?></p>
 			
 			<?php
-		}
-		$userInfos->closeCursor();
-		?>
+	}
+
+$userInfos->closeCursor();
+?>
 
 
 
 
-	<?php $content = ob_get_clean(); ?>
+	<?php
+$content = ob_get_clean(); ?>
 
 <?php
-
-
-
 require '/../template.php';
+
 ?>

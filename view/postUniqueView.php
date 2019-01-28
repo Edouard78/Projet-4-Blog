@@ -1,3 +1,4 @@
+
 <?php
 ob_start();
 $postData = $post->fetch();
@@ -7,23 +8,26 @@ $postData = $post->fetch();
     <h3 class="panel-title"><?php
 echo htmlspecialchars($postData['title']) ?>
 <em class="float-right"><?php
+
 if ($postData['creationDateFr'] != $postData['updatingDateFr'])
-  {
+	{
 ?>
   Mise à jour par 
   <?php
-  echo htmlspecialchars($postData['author']) ?>&#44; le 
+	echo htmlspecialchars($postData['author']) ?>&#44; le 
   <?php
-  echo $postData['updatingDateFr']; 
-  }
-else{
+	echo $postData['updatingDateFr'];
+	}
+  else
+	{
 ?>
 Posté par 
   <?php
-  echo htmlspecialchars($postData['author']) ?>&#44; le 
+	echo htmlspecialchars($postData['author']) ?>&#44; le 
   <?php
-  echo $postData['creationDateFr'];
-}
+	echo $postData['creationDateFr'];
+	}
+
 ?>
 </em></h3>
   </div>
@@ -73,7 +77,7 @@ while ($commentsData = $comments->fetch())
       <?php
 				}
 			}
-		  else
+
 		if (isset($_GET['reportSuccess']) && isset($_GET['commentId']))
 			{
 			if ($_GET['reportSuccess'] == 1 && $commentsData['id'] == $_GET['commentId'])
@@ -90,10 +94,12 @@ while ($commentsData = $comments->fetch())
 </div>
 <?php
 	}
+
 ?>
 
  <h3>Ajouter un commentaire<h3>
  <?php
+
 if (isset($_SESSION['login']))
 	{
 ?>
@@ -105,14 +111,16 @@ if (isset($_SESSION['login']))
     <button>Ajouter</button>
 </form>
 <?php
-  }
-  else{
-    ?>
+	}
+  else
+	{
+?>
     <p>Vous devez être connecter pour ajouter un commentaire</p>
     <?php
-  }
+	}
 
 $content = ob_get_clean();
 require ('view/template.php')
 
 ?>
+

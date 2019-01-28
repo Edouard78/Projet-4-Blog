@@ -20,14 +20,7 @@
 		</div>
 	</nav>
 	<div class="wraper">	
-	<header>
-		<div id="headerBlock">
-			<h1>Blog De Jean</h1>
-			<div class="logo">
-				<img src="plume.png" alt='Logo du site' />
-			</div>
-		</div>
-    </header>
+
     <div class="container-fluid">
    	<div class = "row">
 

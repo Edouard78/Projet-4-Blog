@@ -2,9 +2,10 @@
 
 <?php ob_start(); ?>
 <h3>Articles</h3>
-		<a href="index.php?action=addPostPage" class="btn btn-light">
-			<span class="glyphicon glyphicon-plus"></span> Ajouter un article
+		<a href="index.php?action=addPostPage" class="btn btn-primary">
+		Ajouter un article
 		</a>
+		<br>
 		<div class="table-responsive">
 <table class="table table-bordered table-striped table-condensed">
 	<thead>

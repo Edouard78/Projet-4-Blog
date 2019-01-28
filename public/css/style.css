@@ -1,32 +1,9 @@
 
 body
 {
-	padding-top : 4em !important;
+	padding-top : 6em !important;
 
 }
-
-.logo img
-{
-   width: 35px;
-}
-#headerBlock {
-	display: flex;
-	justify-content: center;
-}
-
-header{
-	border-bottom : 1px rgb(222, 226, 230) solid;
-	padding-bottom : 7px;
-	margin-bottom : 7px;
-}
-
-
-.logo
-{
-	margin-left: 5px;
-	margin-top:  5.88px;
-}
-
 
 .jumbotron
 {
