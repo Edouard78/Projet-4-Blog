@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-	<title>Page d'amnistration</title>
+	<title>Billet simple pour l'Alaska - Page d'administration</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="Blog de Jean, écrivrain">
-    <meta name="keywords" content="Blog jean écrivain">
-    <meta name="author" content="Jean">
+	<meta name="description" content="Billet simple pour l'Alaska, roman sous plusieurs épisodes, de Jean Forteroche acteur et écrivain ">
+    <meta name="keywords" content="billet simple Alaska blog roman jean forteroche ecrivain">
+    <meta name="author" content="Jean Forteroche">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

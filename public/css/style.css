@@ -5,6 +5,26 @@ body
 
 }
 
+.header
+{
+	width: 100%;
+	margin : auto;
+	display: flex;
+	border-bottom: 1px lightgrey solid;
+	margin-bottom : 15px;
+	justify-content: space-around;
+
+
+}
+
+.logo img{
+	width: 125px;
+}
+.logo
+{
+	width: 125px;
+}
+
 .jumbotron
 {
 	margin-bottom : 0 ;

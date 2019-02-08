@@ -80,7 +80,7 @@ if (isset($_GET['action']))
 
 		// NEXT HOME PAGE
 
-		if ($_GET['page'] == 0)
+		if ($_GET['page'] <= 0)
 			{
 			header('Location: index.php?action=home');
 			}
@@ -89,7 +89,7 @@ if (isset($_GET['action']))
 
 		elseif ($_GET['page'] > $postsListsNb + 1)
 			{
-			$end = intval($_GET['homePage']) - 1;
+			$end = intval($_GET['page']) - 1;
 			header('Location: index.php?action=home&page=' . $end);
 			}
 		  else
