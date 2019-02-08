@@ -21,7 +21,7 @@ class CommentManager
 
 	public function getList($postId)
 	{
-		$req = $this->_db->prepare('SELECT id, postId, author, comment, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments WHERE postId = ? ORDER BY creationDateFr ASC');
+		$req = $this->_db->prepare('SELECT id, postId, author, comment, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr FROM comments WHERE postId = ? ORDER BY creationDateFr DESC');
     $req->execute(array($postId));
 
     return $req;

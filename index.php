@@ -293,7 +293,7 @@ if (isset($_GET['action']))
   else
 	{
 	$postsListsNb = countPostsLists();
-	home($postsListsNb, 0, 5);
+	home($postsListsNb, 1);
 	}
 
 }
