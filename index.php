@@ -67,38 +67,34 @@ if (isset($_GET['action']))
 
 	// HOME PAGE
 
-	elseif ($_GET['action'] == "home" && !isset($_GET['homePage']))
+	elseif ($_GET['action'] == "home" && !isset($_GET['page']))
 		{
 		$postsListsNb = countPostsLists();
-		home($postsListsNb, 0, 5);
+		home($postsListsNb, 1);
 		}
 	// HOME PAGE NUMBER X
 
-	elseif ($_GET['action'] == "home" && isset($_GET['homePage']))
+	elseif ($_GET['action'] == "home" && isset($_GET['page']))
 		{
 		$postsListsNb = countPostsLists();
-		$postsNb = $postsListsNb * 5;
 
 		// NEXT HOME PAGE
 
-		if ($_GET['homePage'] == 0)
+		if ($_GET['page'] == 0)
 			{
 			header('Location: index.php?action=home');
 			}
 
 		// PREVIOUS HOME PAGE
 
-		elseif ($_GET['homePage'] >= $postsNb + 5)
+		elseif ($_GET['page'] > $postsListsNb + 1)
 			{
-			$end = intval($_GET['homePage']) - 5;
-			header('Location: index.php?action=home&homePage=' . $end);
+			$end = intval($_GET['homePage']) - 1;
+			header('Location: index.php?action=home&page=' . $end);
 			}
 		  else
 			{
-			$start = intval($_GET['homePage']) - 5;
-			$end = intval($_GET['homePage']);
-			$postsListsNb = countPostsLists();
-			home($postsListsNb, $start, $end);
+			home($postsListsNb, $_GET['page']);
 			}
 		}
 

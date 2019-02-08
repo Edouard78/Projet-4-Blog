@@ -282,9 +282,11 @@ function countPostsLists()
 	return $postsListsNb;
 	}
 
-function home($postsListsNb, $start, $end)
+function home($postsListsNb, $pageNumber)
 	{
 	include ('model/db.php');
+	$end = $pageNumber * 5;
+	$start = ($pageNumber * 5) - 5;
 
 	$postManager = new PostManager($db);
 	$posts = $postManager->getList($start, $end);

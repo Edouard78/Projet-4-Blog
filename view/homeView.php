@@ -37,23 +37,23 @@ else{
 
 ?>
 <?php
-	if (isset($_GET['homePage']))
+	if (isset($_GET['page']))
 		{
-		$endNext = intval($_GET['homePage']) + 5;
-		$endPrev = intval($_GET['homePage']) - 5;
+		$nextPageButtonValue = intval($_GET['page']) + 1;
+		$prevPageButtonValue = intval($_GET['page']) - 1;
 		}
 	  else
 		{
-		$endNext = 10;
-		$endPrev = 0;
+		$nextPageButtonValue = 2;
+		$prevPageButtonValue = 0;
 		}
 
 ?>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <li class="page-item">
-      <a class="page-link" href="index.php?action=home&amp;homePage=<?php
-	echo $endPrev; ?>" aria-label="Previous">
+      <a class="page-link" href="index.php?action=home&amp;page=<?php
+	echo $prevPageButtonValue; ?>" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span>
       </a>
@@ -62,17 +62,16 @@ else{
 <?php
 	for ($i = 1; $i <= $postsListsNb + 1; $i++)
 		{
-		$postsEnd = $i * 5;
 ?>
-    <li class="page-item"><a class="page-link" href="index.php?action=home&amp;homePage=<?php
-		echo $postsEnd; ?>"><?php
+    <li class="page-item"><a class="page-link" href="index.php?action=home&amp;page=<?php
+		echo $i; ?>"><?php
 		echo $i; ?></a></li>
 
 <?php
 		} ?>
     <li class="page-item">
-      <a class="page-link" href="index.php?action=home&amp;homePage=<?php
-	echo $endNext; ?>" aria-label="Next">
+      <a class="page-link" href="index.php?action=home&amp;page=<?php
+	echo $nextPageButtonValue; ?>" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
         <span class="sr-only">Next</span>
       </a>
