@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-	<title>Billet simple pour l'Alaska - Page d'administration</title>
+	<title>Page d'administration</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="Billet simple pour l'Alaska, roman sous plusieurs épisodes, de Jean Forteroche acteur et écrivain ">
     <meta name="keywords" content="billet simple Alaska blog roman jean forteroche ecrivain">

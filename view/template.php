@@ -26,7 +26,7 @@
 		<h1>Billet simple pour l'alaska</h1>
 	</div>
 	<div class="logo">
-		<img src="icon-mountain.jpg" alt="logo du blog représentant une montagne"/>
+		<img src="public/img/icon-mountain.jpg" alt="logo du blog représentant une montagne"/>
 	</div>
 </div>
 	<div class="wraper">	

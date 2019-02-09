@@ -1,7 +1,7 @@
 <?php
 ob_start(); 
 session_start();
-require ('controller/frontend.php');
+require ('controller/controller.php');
 
 
 try {
