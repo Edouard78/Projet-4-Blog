@@ -155,7 +155,7 @@ if (isset($_GET['action']))
 
 	elseif ($_GET['action'] == 'postsAdmin')
 		{
-		listPosts(0, 5);
+		listPosts();
 		}
 
 	// ADD POST

@@ -35,9 +35,16 @@ class PostManager
 
 	public function getList($start , $end){
 
-		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr DESC LIMIT :start ,:end');
+		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr ASC LIMIT :start ,:end');
 		$request->bindValue(':start', $start, PDO::PARAM_INT);
 		$request->bindValue(':end', $end, PDO::PARAM_INT);
+	    $request->execute();
+		return $request;
+	}
+
+	public function getListForAdmin(){
+
+		$request = $this->_db ->prepare('SELECT id, title, author, content, contentResume, DATE_FORMAT(creationDate, \'%d/%m/%Y à %Hh%imin%ss\') AS creationDateFr, DATE_FORMAT(updatingDate, \'%d/%m/%Y à %Hh%imin%ss\') AS updatingDateFr  FROM posts ORDER BY creationDateFr DESC');
 	    $request->execute();
 		return $request;
 	}
@@ -45,13 +52,6 @@ class PostManager
 	public function countPosts()
 	{
 		$req = $this->_db->prepare('SELECT COUNT(id) AS postsNb FROM posts');
-		$req->execute();
-		return $req;
-	}
-
-		public function getListForAdmin(){
- 
-		$req = $this->_db ->prepare('SELECT id, title FROM posts');
 		$req->execute();
 		return $req;
 	}

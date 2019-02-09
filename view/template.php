@@ -23,7 +23,7 @@
 	</nav>
 	<div class="header">
 	<div class="titre">
-		<h1>Billets simples pour l'alaska</h1>
+		<h1>Billet simple pour l'alaska</h1>
 	</div>
 	<div class="logo">
 		<img src="icon-mountain.jpg" alt="logo du blog représentant une montagne"/>

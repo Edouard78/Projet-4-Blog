@@ -126,12 +126,12 @@ function subscribePage()
 POSTS
 ----------------------------------------*/
 
-function listPosts($start, $end)
+function listPosts()
 	{
 	include ('model/db.php');
 
 	$postManager = new PostManager($db);
-	$posts = $postManager->getList($start, $end);
+	$posts = $postManager->getListForAdmin();
 	require ('view/admin/postsView.php');
 
 	}

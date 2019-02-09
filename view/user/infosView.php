@@ -25,6 +25,6 @@ $userInfos->closeCursor();
 $content = ob_get_clean(); ?>
 
 <?php
-require '/../template.php';
+require 'view/template.php';
 
 ?>
