@@ -21,7 +21,7 @@
   		<li class="nav-item"><a class="nav-link" href="index.php?action=adminPage">Espace Admin</a></li>
   		<?php
          }
-      else if($_SESSION['admin'] == FALSE)
+      elseif($_SESSION['admin'] == FALSE)
       { ?>
           <li class="nav-item"><a class="nav-link" href="index.php?action=userPage">Espace Utilisateur</a></li>
           <?php

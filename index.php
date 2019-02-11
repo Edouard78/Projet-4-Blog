@@ -29,10 +29,6 @@ if (isset($_GET['action']))
 		{
 		listPosts(0, 5);
 		}
-	elseif ($_GET['action'] == 'userPage')
-		{
-		listUserInfos($_SESSION['id']);
-		}
 	elseif ($_GET['action'] == 'disconnect')
 		{
 		session_destroy();
@@ -116,7 +112,9 @@ if (isset($_GET['action']))
 
 	// ADD COMMENT
 
-	elseif ($_GET['action'] == 'addComment')
+	elseif (isset($_SESSION['login']) && isset($_SESSION['admin'])){
+
+	if ($_GET['action'] == 'addComment')
 	{
 	if( isset($_POST['author']) && isset($_POST['comment']) && isset($_GET['postId']) )
 		{
@@ -128,6 +126,7 @@ if (isset($_GET['action']))
 		addComment($data);
 		}
 }
+	
 
 	// REPORT COMMENT
 
@@ -144,7 +143,6 @@ if (isset($_GET['action']))
 
 	}
 
-
 	/*  ADMIN SECTION  */
 
 	/*---------------------------------------
@@ -153,7 +151,10 @@ if (isset($_GET['action']))
 
 	// POSTS  HANDLER PAGE
 
-	elseif ($_GET['action'] == 'postsAdmin')
+		if($_SESSION['admin'] == TRUE)
+		{
+
+	if ($_GET['action'] == 'postsAdmin')
 		{
 		listPosts();
 		}
@@ -287,8 +288,27 @@ if (isset($_GET['action']))
 	else{
 		throw new Exception('Aucun identifiant dutilisateur envoyé');
 	}
-   }
+	 }
+	 
+	else{
+		throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+	}
+	}
+	else{
+		
+	if ($_GET['action'] == 'userPage')
+	{
+	listUserInfos($_SESSION['id']);
+	}
+	else{
+		throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+	}
 
+	}
+}
+	else{
+		throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
+	}
 	}
   else
 	{
