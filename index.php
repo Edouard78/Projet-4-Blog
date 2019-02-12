@@ -110,9 +110,11 @@ if (isset($_GET['action']))
 	}
 }
 
-	// ADD COMMENT
+// --------------------------------------------------------SESSION -----------------------------------------------------//
 
 	elseif (isset($_SESSION['login']) && isset($_SESSION['admin'])){
+
+		// ADD COMMENT
 
 	if ($_GET['action'] == 'addComment')
 	{
@@ -167,10 +169,14 @@ if (isset($_GET['action']))
 		}
 	elseif ($_GET['action'] == 'addPost' && isset($_POST['author']))
 		{
+		 $author = strip_tags(trim($_POST['author']));
+		 $title = strip_tags(trim($_POST['title']));
+		$content = strip_tags(trim($_POST['content']));
+
 		$data = array(
-			'author' => $_POST['author'],
-			'title' => $_POST['title'],
-			'content' => $_POST['content']
+			'author' => $author,
+			'title' => $title,
+			'content' => $content
 		);
 		addPost($data);
 		listPosts(0, 5);
