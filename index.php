@@ -118,10 +118,14 @@ if (isset($_GET['action']))
 	{
 	if( isset($_POST['author']) && isset($_POST['comment']) && isset($_GET['postId']) )
 		{
+			
+			$author = trim($_POST['author']);
+			$comment = trim($_POST['comment']);
+
 		$data = array(
 			'postId' => $_GET['postId'],
-			'author' => $_POST['author'],
-			'comment' => $_POST['comment']
+			'author' => $author,
+			'comment' => $comment
 		);
 		addComment($data);
 		}
@@ -167,9 +171,12 @@ if (isset($_GET['action']))
 		}
 	elseif ($_GET['action'] == 'addPost' && isset($_POST['author']))
 		{
+			$author = trim($_POST['author']);
+			$title = trim($_POST['title'];
+
 		$data = array(
-			'author' => $_POST['author'],
-			'title' => $_POST['title'],
+			'author' => $author,
+			'title' => $title,
 			'content' => $_POST['content']
 		);
 		addPost($data);
@@ -193,11 +200,15 @@ if (isset($_GET['action']))
 	{
 	if (isset($_GET['id']) && $_GET['id'] > 0)
 	{
+
+		
+		$author = trim($_POST['author']);
+		$title = trim($_POST['title'];
 	     
 		$data = array(
 			'id' => $_GET['id'],
-			'author' => $_POST['author'],
-			'title' => $_POST['title'],
+			'author' => $author,
+			'title' => $title,
 			'content' => $_POST['content']
 		);
 
