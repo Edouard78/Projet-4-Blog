@@ -89,7 +89,7 @@ class Post
 
 	public function setAuthor($author)
 	{
-		if (!is_string($author) || empty($author))
+		if (!is_string($author) || empty(trim($author)) )
 		{
 			$this->_errors[]=self::INVALID_AUTHOR;
 		}
@@ -101,7 +101,7 @@ class Post
 
 	public function setTitle($title)
 	{
-		if (!is_string($title) || empty($title))
+		if (!is_string($title) || empty(trim($title)) )
 		{
 			$this->_errors[]=self::INVALID_TITLE;
 		}
@@ -113,7 +113,13 @@ class Post
 
 	public function setContent($content)
 	{
-		if (!is_string($content) || empty($content))
+		
+		// NETTOYAGE DES DONNEES RECU DU MODULE TINY MCE
+		$cleanContent = strip_tags($content);
+		$cleanContent = str_replace("&nbsp;","",$cleanContent);
+		$cleanContent = trim($cleanContent);
+
+		if (!is_string($content) || empty($cleanContent) )
 		{
 			$this->_errors[]=self::INVALID_CONTENT;
 		}

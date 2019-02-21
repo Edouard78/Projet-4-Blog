@@ -75,7 +75,7 @@ class User
 
 	public function setLogin($login)
 	{
-		if (!is_string($login) || empty($login))
+		if (!is_string($login) || empty(trim($login)) )
 		{
 			$this->_errors[]=self::INVALID_LOGIN;
 		}
@@ -87,7 +87,7 @@ class User
 
 	public function setPassword($password)
 	{
-		if (!is_string($password) || empty($password))
+		if (!is_string($password) || empty(trim($password)) )
 		{
 			$this->_errors[]=self::INVALID_PASSWORD;
 		}
@@ -99,7 +99,7 @@ class User
 
 	public function setEmail($email)
 	{
-		if(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email) || empty($email) || !is_string($email))
+		if(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $email) || empty(trim($email)) || !is_string($email))
 		{
 			$this->_errors[]=self::INVALID_EMAIL;
 		}

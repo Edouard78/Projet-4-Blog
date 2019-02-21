@@ -85,7 +85,7 @@ class Comment
 	}
 	public function setAuthor($author)
 	{
-		if (!is_string($author) || empty($author))
+		if (!is_string($author) || empty(trim($author)) )
 		{
 			$this->_errors[]=self::INVALID_AUTHOR;
 		}
@@ -97,7 +97,7 @@ class Comment
 
 		public function setComment($comment)
 		{
-			if (!is_string($comment) || empty($comment))
+			if (!is_string($comment) || empty(trim($comment)) )
 			{
 				$this->_errors[]=self::INVALID_COMMENT;
 			}
