@@ -25,15 +25,6 @@ if (isset($_GET['action']))
 		{
 		authenticationPage();
 		}
-	elseif ($_GET['action'] == 'adminPage')
-		{
-		listPosts(0, 5);
-		}
-	elseif ($_GET['action'] == 'disconnect')
-		{
-		session_destroy();
-		header('Location: index.php');
-		}
 
 	/*---------------------------------------
 	USER SUBSCRIBE
@@ -110,6 +101,11 @@ if (isset($_GET['action']))
 	}
 }
 
+
+	/*------------------------------------------------
+	DEMARRAGE DES CONDITIONS DE SESSION POUR LES ACCES
+	-------------------------------------------------*/
+
 	// ADD COMMENT
 
 	elseif (isset($_SESSION['login']) && isset($_SESSION['admin'])){
@@ -146,18 +142,36 @@ if (isset($_GET['action']))
 
 	/*  ADMIN SECTION  */
 
+	// USER ADMIN DISCONNECTION
+
+	elseif ($_GET['action'] == 'disconnect')
+		{
+		session_destroy();
+		header('Location: index.php');
+		}
+
 	/*---------------------------------------
 	POSTS ADMIN SECTION
 	----------------------------------------*/
 
-	// POSTS  HANDLER PAGE
+	/*---------------------------------------
+	CONDITION AVEC SESSION ADMIN
+	----------------------------------------*/
 
 		if($_SESSION['admin'] == TRUE)
 		{
 
+	// POSTS  HANDLER PAGE
+
 	if ($_GET['action'] == 'postsAdmin')
 		{
 		listPosts();
+		}
+
+
+	elseif ($_GET['action'] == 'adminPage')
+		{
+		listPosts(0, 5);
 		}
 
 	// ADD POST
@@ -291,12 +305,18 @@ if (isset($_GET['action']))
 		throw new Exception('Aucun identifiant dutilisateur envoyé');
 	}
 	 }
-	 
-	else{
+
+	 else{
 		throw new Exception('Vous n\'avez pas les droits pour accéder à cette page');
 	}
+	 
 	}
-	else{
+
+	/*---------------------------------------
+	CONDITION AVEC SESSION USER
+	----------------------------------------*/	
+
+	elseif ($_SESSION['admin'] == FALSE){
 		
 	if ($_GET['action'] == 'userPage')
 	{
